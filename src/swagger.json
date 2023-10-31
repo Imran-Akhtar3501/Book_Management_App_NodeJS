@@ -1,0 +1,257 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Book_Management_App",
+        "description": "Application for Book Management",
+        "version": "1.0"
+    },
+    "produces": [
+        "application/json"
+    ],
+    "host": "${SWAGGER_HOST}",
+    "basePath": "",
+    "paths": {
+        "/helloApi": {
+            "get": {
+                "operationId": "helloAPI",
+                "tags": [
+                    "Assessment"
+                ],
+                "description": "First API Test",
+                "summary": "Basic API",
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "schema": {
+                            "$ref": "#/definition/helloApiResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/getAllBooks": {
+            "get": {
+                "operationId": "getAllBooks",
+                "tags": [
+                    "Assessment"
+                ],
+                "description": "Get all the books from MongoDB",
+                "summary": "Fetch Books from DB",
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "schema": {
+                            "$ref": "#/definition/getAllBooksResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/getBookById": {
+            "get": {
+                "operationId": "getBookById",
+                "tags": [
+                    "Assessment"
+                ],
+                "description": "Get books by ID from MongoDB",
+                "summary": "Fetch Book with Specific ID from DB",
+                "parameters": [
+                    {
+                        "name": "BookID",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Book Unique ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "schema": {
+                            "$ref": "#/definition/getBookByIdResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/addNewBook": {
+            "post": {
+                "operationId": "addNewBook",
+                "tags": [
+                    "Assessment"
+                ],
+                "description": "Add new Book to MongoDB",
+                "summary": "Add new Book to DB",
+                "parameters": [
+                    {
+                        "name": "Book Required Data",
+                        "in": "body",
+                        "required": false,
+                        "description": "Book required Data to add to DB",
+                        "type": "array",
+                        "properties": {
+                            "Title": {
+                                "type": "string",
+                                "example": "Book Title"
+                            },
+                            "Author": {
+                                "type": "string",
+                                "example": "Book Author"
+                            },
+                            "Summary": {
+                                "type": "string",
+                                "example": "Book Summary"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "schema": {
+                            "$ref": "#/definition/addNewBookResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/updateBookById": {
+            "put": {
+                "operationId": "updateBookById",
+                "tags": [
+                    "Assessment"
+                ],
+                "description": "Update Existing Book to MongoDB",
+                "summary": "Update Existing Book by ID to DB",
+                "parameters": [
+                    {
+                        "name": "BookID",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Book Unique ID"
+                    },
+                    {
+                        "name": "Book Required Data",
+                        "in": "body",
+                        "required": false,
+                        "description": "Book required Data to Update to DB",
+                        "type": "array",
+                        "properties": {
+                            "Title": {
+                                "type": "string",
+                                "example": "Book Title"
+                            },
+                            "Author": {
+                                "type": "string",
+                                "example": "Book Author"
+                            },
+                            "Summary": {
+                                "type": "string",
+                                "example": "Book Summary"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "schema": {
+                            "$ref": "#/definition/updateBookByIdResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/deleteBookById": {
+            "delete": {
+                "operationId": "deleteById",
+                "tags": [
+                    "Assessment"
+                ],
+                "description": "Delete books by ID from MongoDB",
+                "summary": "Delete Book with Specific ID from DB",
+                "parameters": [
+                    {
+                        "name": "BookID",
+                        "in": "query",
+                        "required": true,
+                        "type": "string",
+                        "description": "Book Unique ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful Operation",
+                        "schema": {
+                            "$ref": "#/definition/deleteBookByIdResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definition": {
+        "helloApiResponse": {
+            "type": "string",
+            "example": "Hello New API"
+        },
+        "getAllBooksResponse": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "_id": {
+                        "type": "integer",
+                        "example": "0"
+                    },
+                    "Title": {
+                        "type": "string",
+                        "example": "SomeTitle"
+                    },
+                    "Author": {
+                        "type": "string",
+                        "example": "SomeAuthorName"
+                    },
+                    "Summary": {
+                        "type": "string",
+                        "example": "Some Summary for Context"
+                    }
+                }
+            }
+        },
+        "getBookByIdResponse": {
+            "type": "object",
+            "properties": {
+                "_id": {
+                    "type": "integer",
+                    "example": "0"
+                },
+                "Title": {
+                    "type": "string",
+                    "example": "SomeTitle"
+                },
+                "Author": {
+                    "type": "string",
+                    "example": "SomeAuthorName"
+                },
+                "Summary": {
+                    "type": "string",
+                    "example": "Some Summary for Context"
+                }
+            }
+        },
+        "addNewBookResponse": {
+            "type": "string",
+            "example": "New Book Added!"
+        },
+        "updateBookByIdResponse": {
+            "type": "string",
+            "example": "Existing Book Updated Successfully!"
+        },
+        "deleteBookByIdResponse": {
+            "type": "string",
+            "example": "Existing Book Deleted Successfully!"
+        }
+    }
+}
